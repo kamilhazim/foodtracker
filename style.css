@@ -15,19 +15,8 @@ input, button, select {
   margin: 5px 0;
 }
 
-button.logout {
-  background-color: #f44336;
-  color: white;
-  border: none;
-  margin-top: 10px;
-  cursor: pointer;
-}
 
-button {
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-}
+
 
 #logoutContainer {
   text-align: right;
@@ -45,6 +34,11 @@ button {
 }
 
 
+button {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+}
 
 button:hover {
   cursor: pointer;
