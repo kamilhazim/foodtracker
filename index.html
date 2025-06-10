@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FOODTRACK – Jejak Makanan Disyaki</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+
+<h2>FOODTRACK – Jejak Makanan Disyaki</h2>
+
+<div id="login-section">
+  <div id="g_id_onload"
+      data-client_id="YOUR_GOOGLE_CLIENT_ID"
+      data-callback="onSignIn"
+      data-auto_prompt="false">
+  </div>
+  <div class="g_id_signin" data-type="standard"></div>
+</div>
+
+<div id="main-section" class="hidden">
+  <p id="welcome"></p>
+
+  <h3>🔍 Cari Nama Restoran / Majlis</h3>
+  <input type="text" id="searchInput" placeholder="Contoh: Restoran Ali / Majlis Kahwin">
+  <button onclick="searchRestaurant()">Cari</button>
+
+  <div id="searchResult" class="hidden"></div>
+
+  <div id="formSection" class="hidden">
+    <h3>➕ Maklumat Baharu</h3>
+    <input type="text" id="name" placeholder="Nama Restoran / Majlis">
+    <select id="type">
+      <option value="restaurant">Restoran</option>
+      <option value="event">Majlis / Acara</option>
+    </select>
+    <input type="text" id="address" placeholder="Alamat Penuh">
+    <input type="date" id="mealDate">
+    <input type="time" id="mealTime">
+    <input type="text" id="district" placeholder="Daerah">
+    <input type="text" id="ic" placeholder="Nombor IC Tanpa Dash">
+    <button onclick="submitForm()">Hantar</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
