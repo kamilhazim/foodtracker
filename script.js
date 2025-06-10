@@ -5,10 +5,41 @@ function onSignIn(response) {
   const credential = response.credential;
   const decoded = JSON.parse(atob(credential.split('.')[1]));
   userEmail = decoded.email;
+
+  // ✅ Save login session
+  localStorage.setItem("userEmail", decoded.email);
+  localStorage.setItem("userName", decoded.name);
+
   document.getElementById('login-section').classList.add('hidden');
   document.getElementById('main-section').classList.remove('hidden');
   document.getElementById('welcome').innerText = `Selamat datang, ${decoded.name}`;
 }
+
+window.onload = () => {
+  const email = localStorage.getItem("userEmail");
+  const name = localStorage.getItem("userName");
+
+  if (email && name) {
+    userEmail = email;
+    document.getElementById('login-section').classList.add('hidden');
+    document.getElementById('main-section').classList.remove('hidden');
+    document.getElementById('welcome').innerText = `Selamat datang, ${name}`;
+  }
+};
+
+
+function showMain(name) {
+  document.getElementById('login-section').classList.add('hidden');
+  document.getElementById('main-section').classList.remove('hidden');
+  document.getElementById('welcome').innerText = `Selamat datang, ${name}`;
+}
+
+function logout() {
+  localStorage.clear();
+  location.reload();
+}
+
+
 
 async function searchRestaurant() {
   const name = document.getElementById('searchInput').value.trim();
