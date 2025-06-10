@@ -51,12 +51,12 @@ async function searchRestaurant() {
 
     if (data.matches && data.matches.length > 0) {
       resultDiv.innerHTML = `<strong>${data.matches.length} hasil dijumpai:</strong><ul>` +
-      data.matches.map(x => 
-        `<li><strong>${x.Name}</strong> – ${x.Type}<br>
-        Tarikh: ${x["Meal Date"]} | Masa: ${x["Meal Time"]}<br>
-        Dilaporkan oleh PKD: <strong>${x.District}</strong></li><br>`
-      ).join('') +
-      `</ul>`;
+        data.matches.map(x => 
+          `<li><strong>${x.Name}</strong> – ${x.Type}<br>
+          Tarikh: ${x["Meal Date"]} | Masa: ${x["Meal Time"]}<br>
+          Dilaporkan oleh PKD: <strong>${x.District}</strong></li><br>`
+        ).join('') +
+        `</ul>`;
     } else {
       resultDiv.innerHTML = "<em>Tiada padanan dijumpai. Sila isi maklumat baharu.</em>";
       document.getElementById('formSection').classList.remove('hidden');
@@ -86,27 +86,25 @@ async function submitForm() {
   }
 
   try {
-    const res = await fetch(scriptURL, {
+    await fetch(scriptURL, {
       method: 'POST',
+      mode: 'no-cors',
       body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json' }
+      headers: {
+        'Content-Type': 'application/json'
+      }
     });
 
-    const result = await res.json();
-    if (result.status === 'success') {
-      alert("Maklumat berjaya dihantar.");
-      document.getElementById('formSection').classList.add('hidden');
-    } else if (result.status === 'duplicate') {
-      alert("Rekod ini telah wujud.");
-    } else {
-      alert("Ralat semasa menghantar.");
-    }
+    // Assume success due to no-cors
+    alert("Maklumat berjaya dihantar.");
+    document.getElementById('formSection').classList.add('hidden');
+
   } catch (err) {
     alert("Ralat sambungan: " + err.message);
   }
 }
 
-
+// --- Show Form ---
 function showForm() {
   const nameInput = document.getElementById('searchInput').value.trim();
   if (nameInput) {
