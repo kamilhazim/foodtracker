@@ -51,8 +51,12 @@ async function searchRestaurant() {
 
     if (data.matches && data.matches.length > 0) {
       resultDiv.innerHTML = `<strong>${data.matches.length} hasil dijumpai:</strong><ul>` +
-        data.matches.map(x => `<li>${x.Name} – ${x.Type} (${x.District})</li>`).join('') +
-        `</ul>`;
+      data.matches.map(x => 
+        `<li><strong>${x.Name}</strong> – ${x.Type}<br>
+        Tarikh: ${x["Meal Date"]} | Masa: ${x["Meal Time"]}<br>
+        Dilaporkan oleh PKD: <strong>${x.District}</strong></li><br>`
+      ).join('') +
+      `</ul>`;
     } else {
       resultDiv.innerHTML = "<em>Tiada padanan dijumpai. Sila isi maklumat baharu.</em>";
       document.getElementById('formSection').classList.remove('hidden');
@@ -100,4 +104,13 @@ async function submitForm() {
   } catch (err) {
     alert("Ralat sambungan: " + err.message);
   }
+}
+
+
+function showForm() {
+  const nameInput = document.getElementById('searchInput').value.trim();
+  if (nameInput) {
+    document.getElementById('name').value = nameInput;
+  }
+  document.getElementById('formSection').classList.remove('hidden');
 }
