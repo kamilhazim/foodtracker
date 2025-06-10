@@ -14,3 +14,11 @@ input, button, select {
   padding: 10px;
   margin: 5px 0;
 }
+
+button.logout {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+}
